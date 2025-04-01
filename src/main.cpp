@@ -42,6 +42,8 @@ public:
       M5_LOGE("Failed to initialize roller");
       delay(500);
     }
+    _roller.setRGBMode(roller_rgb_t::ROLLER_RGB_MODE_USER_DEFINED);
+    _roller.setRGB(0);
     _roller.resetStalledProtect();
     _roller.setOutput(0);
     _roller.setSpeedMaxCurrent(100000);
