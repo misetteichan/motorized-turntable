@@ -23,7 +23,7 @@ def main(diameter: int):
       cube(12+6, 12, 9.5+6).translate(-(12+6)/2, diameter/2 - 12, 0),
       cylinder(h=15.2, r=diameter/2)
     )
-    bottom -= _roller - _c6
+    bottom -= _roller + _c6
 
     upper = [cube(diameter-1,2,6).translate(-(diameter-1)/2, -2/2, 0).rotateZ(r) for r in range(0,360,45)]
     upper += wall(diameter, 15.2-.5, 1).translate(0, 0, 0)
