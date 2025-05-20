@@ -36,10 +36,8 @@ class Roller {
   int32_t _speed = 0;
 public:
   void begin() {
-    const auto sda = M5.getPin(m5::pin_name_t::port_a_sda);
-    const auto scl = M5.getPin(m5::pin_name_t::port_a_scl);
-    while(!_roller.begin(&Wire, 0x65, sda, scl)) {
-      M5_LOGE("Failed to initialize roller");
+    while (!findRoller()) {
+      M5_LOGE("Failed to find roller. Retrying...");
       delay(500);
     }
     _roller.setRGBMode(roller_rgb_t::ROLLER_RGB_MODE_USER_DEFINED);
@@ -73,6 +71,19 @@ public:
 
   int32_t getSpeed() const {
     return _running ? _speed : 0;
+  }
+
+ private:
+  bool findRoller() {
+    const auto sda = M5.getPin(m5::pin_name_t::port_a_sda);
+    const auto scl = M5.getPin(m5::pin_name_t::port_a_scl);
+    for (auto addr = 1; addr < 127; ++addr) {
+      if (_roller.begin(&Wire, addr, sda, scl)) {
+        M5_LOGI("Found roller at address: %02X", addr);
+        return true;
+      }
+    }
+    return false;
   }
 };
 
