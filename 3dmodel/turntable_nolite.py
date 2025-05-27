@@ -17,11 +17,12 @@ def main(diameter: int):
     _roller += [cube(12.2, 5, 15.2).translate(-12.2/2, -20 -5, 0).color('white').rotateZ(r) for r in range(0,360,90)]
     _c6 = cube(12, 23.2, 9.5).translate(-12/2, diameter/2 - 23.2, 3).color('cyan')
     
-    bottom = cube(50, 50, 15.2).translate(-25, -25, 0) + wall(diameter, 15.2)
+    space = .5
+    bottom = cube(50, 50, 15.2 - space).translate(-25, -25, 0) + wall(diameter, 15.2 - space)
     bottom += cylinder(h=2, r=diameter/2).translate(0, 0, -1)
     bottom += intersection()(
       cube(12+6, 12, 9.5+6).translate(-(12+6)/2, diameter/2 - 12, 0),
-      cylinder(h=15.2, r=diameter/2)
+      cylinder(h=15.2 - space, r=diameter/2)
     )
     bottom -= _roller + _c6
 
