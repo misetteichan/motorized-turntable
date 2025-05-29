@@ -40,20 +40,24 @@ platformio run -t upload
 
 ### Generate and Print 3D Model
 
-1. Install the required Python packages
+- Default STL files (`top.stl`, `bottom.stl`, `upper.stl`) with a diameter of 100mm are provided in the `/3dmodel` folder. You can print these directly with your 3D printer.
 
-```bash
-cd 3dmodel
-pip install -r requirements.txt
-```
+- **If you want to customize the size or shape of the 3D model, follow these steps:**
 
-2. Generate the model (default diameter is 100mm)
+  1. Install the required Python packages
 
-```bash
-python turntable.py --diameter 100
-```
+     ```bash
+     cd 3dmodel
+     pip install -r requirements.txt
+     ```
 
-3. Print the generated STL files (`top.stl`, `bottom.stl`, `upper.stl`) with a 3D printer
+  2. Generate the model (for example, with a diameter of 120mm)
+
+     ```bash
+     python turntable.py --diameter 120
+     ```
+
+  3. Print the generated STL files (`top.stl`, `bottom.stl`, `upper.stl`) with your 3D printer
 
 ## Assembly Instructions
 
@@ -76,7 +80,7 @@ There are no switches or control panels on the main unit. Just spin it by hand t
 
 The firmware in this project works with both Roller485Lite and Roller485 as-is.  
 For Roller485, please use `upper_nolite.stl` instead of `upper.stl` for the 3D model.  
-There is a hole for the Grove cable on the table. If needed, edit `turntable_nolite.py` to generate a custom 3D model.
+There is a hole on the table for the Grove cable. If you want to change the position or remove the hole, please edit `turntable_nolite.py` and generate a new 3D model.
 
 ## License
 

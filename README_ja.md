@@ -40,20 +40,24 @@ platformio run -t upload
 
 ### 3Dモデルの生成と印刷
 
-1. 必要なPythonパッケージをインストール
+- `/3dmodel` フォルダにデフォルト（直径100mm）のSTLファイル（`top.stl`、`bottom.stl`、`upper.stl`）が用意されていますので、そのまま3Dプリンタで印刷できます。
 
-```bash
-cd 3dmodel
-pip install -r requirements.txt
-```
+- **カスタムサイズや形状で3Dモデルを作成したい場合は、以下の手順で生成できます：**
 
-2. モデルを生成（デフォルトの直径は100mm）
+  1. 必要なPythonパッケージをインストール
 
-```bash
-python turntable.py --diameter 100
-```
+     ```bash
+     cd 3dmodel
+     pip install -r requirements.txt
+     ```
 
-3. 生成されたSTLファイル（`top.stl`、`bottom.stl`、`upper.stl`）を3Dプリンタで印刷
+  2. モデルを生成（例：直径120mmの場合）
+
+     ```bash
+     python turntable.py --diameter 120
+     ```
+
+  3. 生成されたSTLファイル（`top.stl`、`bottom.stl`、`upper.stl`）を3Dプリンタで印刷
 
 ## 組み立て方法
 
@@ -76,7 +80,7 @@ python turntable.py --diameter 100
 
 本プロジェクトのファームウェアは、Roller485LiteとRoller485のどちらでもそのまま使えます。  
 3Dモデルの`upper.stl`だけRoller485用の`upper_nolite.stl`を利用してください。  
-テーブル上に Grobeケーブルを通す穴が空いていますが、必要に応じて`turntable_nolite.py`を編集して3Dモデルを作成してください。
+テーブル上にGroveケーブルを通す穴を開けてあります。穴の位置や有無を変更したい場合は、`turntable_nolite.py`を編集して3Dモデルを作成してください。
 
 ## ライセンス
 
