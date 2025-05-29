@@ -1,88 +1,90 @@
 # motorized-turntable
 
-Roller485Liteを使用した自動回転式ターンテーブルプロジェクトです。  
-3Dプリント部品と電子部品を組み合わせて、自作の回転台を作成できます。
+[日本語](./README_ja.md)
 
-**朗報!** Roller485にも対応しています（詳細は末尾に!!）。
+This is a project for an automatic rotary turntable using M5Stack Roller485Lite.  
+By combining 3D printed parts and electronic components, you can build your own motorized turntable.
 
-## 概要
+**Good news!** Roller485 is also supported (see the end for details!).
 
-このプロジェクトは以下の2つの主要部分から構成されています
+## Overview
 
-1. **M5Stack NanoC6用ファームウェア**: M5Stack Roller485Liteを制御して回転を管理します。
-2. **3Dプリント用モデル**: ターンテーブルの筐体と機構部品を作成します。
+This project consists of the following two main components:
 
-## 必要な部品
+1. **Firmware for M5Stack NanoC6**: Controls the M5Stack Roller485Lite and manages the rotation.
+2. **3D Print Model**: Creates the turntable body and mechanical parts.
+
+## Required Components
 
 - M5Stack NanoC6
 - M5Stack Roller485Lite
-- Groveケーブル（1本）（NanoC6とRoller485Liteを接続）
-- 3Dプリンタ（STLファイル出力用）
-- 固定用ネジx4 (M3x5 皿ネジ)
-- 滑り止め用ゴム足x4
-- トップカバー固定用両面テープまたは接着剤
+- Grove cable (1 piece) (to connect NanoC6 and Roller485Lite)
+- 3D printer (for STL file output)
+- 4 fixing screws (M3x5 pan head screws)
+- 4 anti-slip rubber feet
+- Double-sided tape or adhesive for fixing the top cover
 
-## セットアップ方法
+## Setup Instructions
 
-### ファームウェアのビルドとインストール
+### Build and Install Firmware
 
-1. [PlatformIO](https://platformio.org/)をインストール
-2. このリポジトリをクローン
-3. PlatformIOでプロジェクトを開く
-4. ビルドしてM5Stack NanoC6にアップロード
+1. Install [PlatformIO](https://platformio.org/)
+2. Clone this repository
+3. Open the project with PlatformIO
+4. Build and upload to M5Stack NanoC6
 
 ```bash
-# PlatformIOコマンドラインの場合
+# For PlatformIO command line
 platformio run -t upload
 ```
 
-### 3Dモデルの生成と印刷
+### Generate and Print 3D Model
 
-1. 必要なPythonパッケージをインストール
+1. Install the required Python packages
 
 ```bash
 cd 3dmodel
 pip install -r requirements.txt
 ```
 
-2. モデルを生成（デフォルトの直径は100mm）
+2. Generate the model (default diameter is 100mm)
 
 ```bash
 python turntable.py --diameter 100
 ```
 
-3. 生成されたSTLファイル（`top.stl`、`bottom.stl`、`upper.stl`）を3Dプリンタで印刷
+3. Print the generated STL files (`top.stl`, `bottom.stl`, `upper.stl`) with a 3D printer
 
-## 組み立て方法
+## Assembly Instructions
 
-1. 3Dプリントした部品を準備
-2. M5Stack NanoC6とM5Stack Roller485Liteを底部に取り付け、Groveケーブルで接続
-3. 上部と底部を組み合わせ、固定用ネジで固定
-4. 滑り止め用ゴム足を各部品の下部に取り付ける
-5. トップカバーを貼り付ける
+1. Prepare the 3D printed parts
+2. Attach the M5Stack NanoC6 and M5Stack Roller485Lite to the bottom, and connect them with the Grove cable
+3. Assemble the top and bottom parts and fix them with the screws
+4. Attach the anti-slip rubber feet to the bottom of each part
+5. Attach the top cover
 
-## 使用方法
+## How to Use
 
-本体にはスイッチや操作パネルがなく、手で回すだけで操作できます。
+There are no switches or control panels on the main unit. Just spin it by hand to operate.
 
-1. M5Stack NanoC6に給電するため、USBケーブルでPCや電源アダプタに接続
-2. ターンテーブルを手で回すと、その回転速度で自動的に回転を継続
-3. 回転中でも手で回して速度を変更
-4. 手で回転を止めると、モーター制御も停止
+1. Connect the M5Stack NanoC6 to your PC or power adapter via USB cable for power
+2. Spin the turntable by hand and it will automatically continue rotating at that speed
+3. You can change the speed by spinning it by hand even during operation
+4. If you stop the rotation by hand, the motor control will also stop
 
-## おまけ：Roller485を使う場合
+## Appendix: Using with Roller485
 
-本プロジェクトのファームウェアは、Roller485LiteとRoller485のどちらでもそのまま使えます。  
-3Dモデルの`upper.stl`だけRoller485用の`upper_nolite.stl`を利用してください。  
-テーブル上に Grobeケーブルを通す穴が空いていますが、必要に応じて`turntable_nolite.py`を編集して3Dモデルを作成してください。
+The firmware in this project works with both Roller485Lite and Roller485 as-is.  
+For Roller485, please use `upper_nolite.stl` instead of `upper.stl` for the 3D model.  
+There is a hole for the Grove cable on the table. If needed, edit `turntable_nolite.py` to generate a custom 3D model.
 
-## ライセンス
+## License
 
-本プロジェクトはMITライセンスの下で公開しています。詳細は[LICENSE](LICENSE)ファイルをご参照ください。
+This project is released under the MIT License. For details, please see the [LICENSE](LICENSE) file.
 
-## 作った人
+## Author
 
 名称未設定ちゃん (misetteichan)
 
 ---
-このドキュメントはAIアシスタントCascadeによって作成されました。
+This document was created by the AI assistant Cascade.
