@@ -26,28 +26,32 @@ def main(diameter: int):
     )
     bottom -= _roller + _c6
 
-    upper = [cube(diameter-1,2,6).translate(-(diameter-1)/2, -2/2, 0).rotateZ(r) for r in range(0,360,45)]
-    upper += wall(diameter, 15.2-.5, 1).translate(0, 0, 0)
+    # upper = [cube(diameter-1,2,6).translate(-(diameter-1)/2, -2/2, 0).rotateZ(r) for r in range(0,360,45)]
+    upper = wall(diameter, 40-15.2-.5, 1).translate(0, 0, 0)
     upper += cylinder(h=9, r=41/2+2)
     upper += cylinder(h=3, r=diameter/2).translate(0, 0, -2)
-    upper -= cylinder(h=9, r=41.5/2)
+    upper -= cylinder(h=9, r=40/2)
+    upper -= ([cylinder(h=9, r=4.85/2+1).translate(x, y, 0) for x in [-8, 8] for y in [-16, 16]])
     bis = cylinder(h=1.8,r1=5.6/2,r2=3.2/2) + cylinder(h=10,r=3.2/2)
     bis = bis.translate(10, 0, -2)
-    upper -= [bis.rotateZ(r) for r in range(0,360,90)]
-    top = cylinder(h=1.8, r= diameter/2)
+    # upper -= [bis.rotateZ(r) for r in range(0,360,90)]
+    # grove hole
+    upper -= cube(10, 10, 9).translateY(-5).translateX(-27)
+    upper -= cube(5, 10, 9).translate(-27,-5,-4)
+    top = cylinder(h=1.8, r= diameter/2) 
 
     model = bottom + _roller  + _c6
-    model += upper.rotateY(180).up(15.2 + 15.2)
-    model += top.up(15.2 + 15.2 + 3)
+    model += upper.rotateY(180).up(40)
+    model += top.up(40 + 3)
     model.save_as_scad()
 
     def save_as_stl(obj, filename):
         obj.save_as_stl(filename)
         remove(f'{filename}.scad')
 
-    save_as_stl(top, 'top.stl')
-    save_as_stl(bottom, 'bottom.stl')
-    save_as_stl(upper, 'upper.stl')
+    # save_as_stl(top, 'top.stl')
+    # save_as_stl(bottom, 'bottom.stl')
+    save_as_stl(upper, 'upper_nolite.stl')
 
 
 if __name__ == '__main__':
